@@ -1,0 +1,35 @@
+name: Zip repository files and upload to another repository
+on:
+  push:
+    branches: [main]
+
+jobs:
+  zip-and-upload:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Zip files
+        run: |
+          zip -r archive.zip .
+        env:
+          ZIP_PASSWORD: ${{ secrets.ZIP_PASSWORD }}
+      - name: Create release
+        uses: actions/create-release@v1
+        id: create_release
+        with:
+          tag_name: v1.0.0
+          release_name: Release v1.0.0
+          body: This is a test release
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.TARGET_REPO_TOKEN }}
+      - name: Upload release asset
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./archive.zip
+          asset_name: archive.zip
+          asset_content_type: application/zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.TARGET_REPO_TOKEN }}
