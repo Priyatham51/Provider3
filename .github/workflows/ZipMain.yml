@@ -8,17 +8,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Zip files
-        run: |
-          zip -r archive.zip .
-        env:
-          ZIP_PASSWORD: ${{ secrets.ZIP_PASSWORD }}
       - name: Version Increment
         uses: reecetech/version-increment@2023.4.1
         id: version
         with:
           scheme: semver
           increment: patch
+      - name: Zip files
+        run: |
+          zip -r "_v${{ steps.version.outputs.version }}.zip" .
+        env:
+          ZIP_PASSWORD: ${{ secrets.ZIP_PASSWORD }}
       - name: Create release
         uses: actions/create-release@v1
         id: create_release
