@@ -24,12 +24,12 @@ jobs:
           prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Upload release asset
-        uses: actions/upload-release-asset@v1
+      - name: Upload files to a GitHub release
+        uses: svenstaro/upload-release-action@2.5.0
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./archive.zip
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ./archive.zip
           asset_name: archive.zip
-          asset_content_type: application/zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref }}
+          overwrite: true
+          body: "This is my release text"
