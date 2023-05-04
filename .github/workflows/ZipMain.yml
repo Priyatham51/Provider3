@@ -44,6 +44,6 @@ jobs:
         with:
           source_file: ./archive.zip
           destination_repo: 'TestPrep24/providerPacakageManager'
-          user_email: 'priyathamanisetty@gmail.com'
-          user_name: 'priyatham51'
+          user_email: 'apriyatham@gmail.com'
+          user_name: 'Priyatham51'
           commit_message: 'A custom message for the commit'
