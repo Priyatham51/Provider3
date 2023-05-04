@@ -27,6 +27,7 @@ jobs:
       - name: Upload files to a GitHub release
         uses: svenstaro/upload-release-action@2.5.0
         with:
+          repo_name: TestPrep24/providerPacakageManager
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: ./archive.zip
           asset_name: archive.zip
