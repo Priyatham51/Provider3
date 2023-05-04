@@ -28,6 +28,15 @@ jobs:
           body: This is a test release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload release asset
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./archive.zip
+          asset_name: archive.zip
+          asset_content_type: application/zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload files to a GitHub release
         uses: svenstaro/upload-release-action@2.5.0
         with:
