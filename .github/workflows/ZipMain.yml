@@ -32,8 +32,8 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./archive.zip
-          asset_name: archive.zip
+          asset_path: "./archive_v${{ steps.version.outputs.version }}.zip"
+          asset_name: "archive_v${{ steps.version.outputs.version }}.zip"
           asset_content_type: application/zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -42,7 +42,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source_file: ./archive.zip
+          source_file: "./archive_v${{ steps.version.outputs.version }}.zip"
           destination_repo: 'TestPrep24/providerPacakageManager'
           user_email: 'apriyatham@gmail.com'
           user_name: 'Priyatham51'
