@@ -16,7 +16,7 @@ jobs:
           increment: patch
       - name: Zip files
         run: |
-          zip -r "archive_v${{ steps.version.outputs.version }}.zip" .
+          zip -r "provider3_v${{ steps.version.outputs.version }}.zip" .
         env:
           ZIP_PASSWORD: ${{ secrets.ZIP_PASSWORD }}
       - name: Create release
@@ -32,8 +32,8 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: "./archive_v${{ steps.version.outputs.version }}.zip"
-          asset_name: "archive_v${{ steps.version.outputs.version }}.zip"
+          asset_path: "./provider3_v${{ steps.version.outputs.version }}.zip"
+          asset_name: "provider3_v${{ steps.version.outputs.version }}.zip"
           asset_content_type: application/zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -42,7 +42,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source_file: "./archive_v${{ steps.version.outputs.version }}.zip"
+          source_file: "./provider3_v${{ steps.version.outputs.version }}.zip"
           destination_repo: 'TestPrep24/providerPacakageManager'
           user_email: 'apriyatham@gmail.com'
           user_name: 'Priyatham51'
