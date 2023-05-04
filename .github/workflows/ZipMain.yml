@@ -23,7 +23,7 @@ jobs:
           draft: false
           prerelease: false
         env:
-          GITHUB_TOKEN: ${{ secrets.TARGET_REPO_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload release asset
         uses: actions/upload-release-asset@v1
         with:
@@ -32,4 +32,4 @@ jobs:
           asset_name: archive.zip
           asset_content_type: application/zip
         env:
-          GITHUB_TOKEN: ${{ secrets.TARGET_REPO_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
