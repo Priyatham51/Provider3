@@ -16,7 +16,7 @@ jobs:
           increment: patch
       - name: Zip files
         run: |
-          zip -r "_v${{ steps.version.outputs.version }}.zip" .
+          zip -r "archive_v${{ steps.version.outputs.version }}.zip" .
         env:
           ZIP_PASSWORD: ${{ secrets.ZIP_PASSWORD }}
       - name: Create release
